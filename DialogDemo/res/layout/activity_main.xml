@@ -1,0 +1,96 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/btnGeneral"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="普通对话框" />
+
+            <Button
+                android:id="@+id/btnButtons1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="多按钮的普通对话框1" />
+
+            <Button
+                android:id="@+id/btnButtons2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="多按钮的普通对话框2" />
+
+            <Button
+                android:id="@+id/btnListView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="列表选择对话框" />
+
+            <Button
+                android:id="@+id/btnListViewSingle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="单选列表选择对话框" />
+
+            <Button
+                android:id="@+id/btnListViewMulti"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="多选列表选择对话框" />
+
+            <Button
+                android:id="@+id/btnProgressDialog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="滚动等待对话框" />
+
+            <Button
+                android:id="@+id/btnProgressDialogH"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="进度条对话框" />
+
+            <Button
+                android:id="@+id/btnCustomDialog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="自定义对话框" />
+
+            <Button
+                android:id="@+id/dialogFromBottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="从底部弹出的对话框" />
+
+            <Button
+                android:id="@+id/dialogFromBottom2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="从底部弹出的对话框2" />
+
+            <Button
+                android:id="@+id/dialog1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="完全自定义" />
+
+            <Button
+                android:id="@+id/btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="跳转到下一个activity" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

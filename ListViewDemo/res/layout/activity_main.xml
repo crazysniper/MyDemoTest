@@ -1,0 +1,105 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/btn1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="listView1" />
+
+        <Button
+            android:id="@+id/focus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="焦点问题" />
+
+        <Button
+            android:id="@+id/edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="edit"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/xiala"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="下来刷新控件" />
+
+        <Button
+            android:id="@+id/btn2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="AsyncTaskListView" />
+
+        <Button
+            android:id="@+id/btn2_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="AsyncTaskListView2" />
+
+        <Button
+            android:id="@+id/ExpandableListActitivty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ExpandableListActitivty" />
+
+        <Button
+            android:id="@+id/btn3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="AsyncTask" />
+
+        <Button
+            android:id="@+id/btn4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="AsyncTask2" />
+
+        <Button
+            android:id="@+id/list_silde_del"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="滑动删除" />
+
+        <Button
+            android:id="@+id/tuodong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="拖动" />
+
+        <Button
+            android:id="@+id/btn5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="list" />
+
+        <Button
+            android:id="@+id/btn6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="qq 聊天画面" />
+
+        <Button
+            android:id="@+id/btn7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ListView常见问题" />
+
+        <TextView
+            android:id="@+id/num"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="从AsyncTask2获得的jsonList个数"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+</ScrollView>

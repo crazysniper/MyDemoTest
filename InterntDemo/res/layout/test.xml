@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/bt_capture"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Capture from Camera" />
+
+    <Button
+        android:id="@+id/bt_gallery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Choose from Gallery" />
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:background="#eeffffff"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_launcher" />
+
+</LinearLayout>

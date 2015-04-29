@@ -1,0 +1,90 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#2F333B"
+        android:orientation="vertical" >
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <SurfaceView
+                android:id="@+id/surfaceView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:keepScreenOn="true" >
+            </SurfaceView>
+
+            <!-- 手机竖屏时显示的水印viewpager -->
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/vPager1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom" />
+
+            <!-- 手机横屏时显示的水印viewpager -->
+
+            <com.example.camerademo.mywidget.VerticalViewPager
+                android:id="@+id/vPager2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom" />
+
+            <ImageView
+                android:id="@+id/show_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/close"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="left|top"
+                android:layout_marginLeft="22dp"
+                android:layout_marginTop="13dp"
+                android:src="@drawable/camera_close" />
+
+            <ImageView
+                android:id="@+id/change_camera"
+                android:layout_width="64dp"
+                android:layout_height="36dp"
+                android:layout_gravity="right|top"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/change_camera" />
+        </FrameLayout>
+
+        <RelativeLayout
+            android:id="@+id/bottom"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" >
+
+            <ImageView
+                android:id="@+id/album"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher" />
+
+            <ImageView
+                android:id="@+id/take_pic"
+                android:layout_width="112dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/camera_take_l" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</FrameLayout>
