@@ -1,0 +1,96 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/action_call"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="呼叫指定的电话号码" />
+
+        <Button
+            android:id="@+id/action_dial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="调用拨号面板" />
+
+        <Button
+            android:id="@+id/action_sendto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="调用发送短信面板，带联系人" />
+
+        <Button
+            android:id="@+id/action_sendto2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="调用发送短信面板，不带联系人" />
+
+        <Button
+            android:id="@+id/action_send"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="调用发送彩信面板" />
+
+        <Button
+            android:id="@+id/open_broswer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="打开浏览器" />
+
+        <Button
+            android:id="@+id/open"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="打开应用一，需要在应用一里面设置" />
+
+        <Button
+            android:id="@+id/open1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="打开应用二，只需要知道package name" />
+
+        <Button
+            android:id="@+id/open2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="打开应用三，只需要知道package name，这个和上面的区别是上面的是重新打开一个新的，而这个是打开原有的" />
+
+        <Button
+            android:id="@+id/openmarket"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="打开应用四应用市场" />
+
+        <Button
+            android:id="@+id/open_self_market"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="打开本应用的应用市场" />
+
+        <Button
+            android:id="@+id/action_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="打开ACTION_EDIT" />
+
+        <Button
+            android:id="@+id/action_setting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="打开设置" />
+
+        <Button
+            android:id="@+id/action_wifisetting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="打开wifi设置" />
+    </LinearLayout>
+
+</ScrollView>
