@@ -1,0 +1,433 @@
+/**
+ * @file XListView.java
+ * @package me.maxwin.view
+ * @create Mar 18, 2012 6:28:41 PM
+ * @author Maxwin
+ * @description An ListView support (a) Pull down to refresh, (b) Pull up to load more.
+ * 		Implement IXListViewListener, and see stopRefresh() / stopLoadMore().
+ */
+package com.gftest.myappclient.xlistview;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Color;
+import android.util.AttributeSet;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewTreeObserver.OnGlobalLayoutListener;
+import android.view.animation.DecelerateInterpolator;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.Scroller;
+import android.widget.TextView;
+
+import com.gftest.myappclient.R;
+
+/**
+ * http://blog.csdn.net/zhaokaiqiang1992/article/details/42392731 代码分析<br>
+ * 
+ * XListView就是通过对用户手势的方向和距离的判断，来动态的改变Header和Footer实现的功能
+ * 
+ * @author Gao
+ * 
+ */
+public class XListView extends ListView implements OnScrollListener {
+
+	/** 记录按下点的y坐标 */
+	private float mLastY = -1; // save event y
+	/** 用来回滚 */
+	private Scroller mScroller; // used for scroll back
+	private OnScrollListener mScrollListener; // user's scroll listener
+
+	// the interface to trigger refresh and load more.
+	private IXListViewListener mListViewListener;
+
+	// -- header view
+	private XListViewHeader mHeaderView;
+	// header view content, use it to calculate the Header's height. And hide it
+	// when disable pull refresh.
+	private RelativeLayout mHeaderViewContent;
+	private TextView mHeaderTimeView;
+	/** header的高度 */
+	private int mHeaderViewHeight; // header view's height
+	/** 是否能够刷新 */
+	private boolean mEnablePullRefresh = true;
+	/** 是否正在刷新 */
+	private boolean mPullRefreshing = false; // is refreashing.
+
+	// -- footer view
+	private XListViewFooter mFooterView;
+	/** 是否可以加载更多 */
+	private boolean mEnablePullLoad;
+	/** 是否正在加载 */
+	private boolean mPullLoading;
+	/** 是否footer准备状态 */
+	private boolean mIsFooterReady = false;
+
+	// total list items, used to detect is at the bottom of listview.
+	private int mTotalItemCount;
+
+	// for mScroller, scroll back from header or footer.
+	/** 记录是从header还是footer返回 */
+	private int mScrollBack;
+	private final static int SCROLLBACK_HEADER = 0;
+	private final static int SCROLLBACK_FOOTER = 1;
+
+	/** 滑动时长 */
+	private final static int SCROLL_DURATION = 400; // scroll back duration
+	/** 加载更多的距离 */
+	private final static int PULL_LOAD_MORE_DELTA = 50; // when pull up >= 50px
+														// at bottom, trigger
+														// load more.
+	/** 滑动比例 */
+	private final static float OFFSET_RADIO = 1.8f; // support iOS like pull
+													// feature.
+
+	private int dividerHeight;
+	private int headerBackground  =Color.TRANSPARENT;
+	private int footerBackground  =Color.TRANSPARENT;
+	
+	/**
+	 * @param context
+	 */
+	public XListView(Context context) {
+		this(context,null);
+	}
+
+	public XListView(Context context, AttributeSet attrs) {
+		this(context, attrs,0);
+	}
+
+	public XListView(Context context, AttributeSet attrs, int defStyle) {
+		super(context, attrs, defStyle);
+		initWithContext(context, attrs, defStyle);
+	}
+
+	private void initWithContext(Context context, AttributeSet attrs, int defStyle) {
+		try {
+			Method method = getClass().getMethod("setOverScrollMode", int.class);
+			try {
+				Field field = getClass().getField("OVER_SCROLL_NEVER");
+				if(method!=null&&field!=null){
+					try {
+						method.invoke(this, field.getInt(View.class));
+					} catch (IllegalArgumentException e) {
+						e.printStackTrace();
+					} catch (IllegalAccessException e) {
+						e.printStackTrace();
+					} catch (InvocationTargetException e) {
+						e.printStackTrace();
+					}
+				}
+			} catch (NoSuchFieldException e) {
+				e.printStackTrace();
+			}
+		} catch (NoSuchMethodException e) {
+			e.printStackTrace();
+		}
+		
+		TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.MyXlistView);
+		dividerHeight = typedArray.getDimensionPixelSize(R.styleable.MyXlistView_dividerHeight, 0);
+		headerBackground = typedArray.getResourceId(R.styleable.MyXlistView_headerBackground, Color.TRANSPARENT);
+		footerBackground = typedArray.getResourceId(R.styleable.MyXlistView_footerBackground, Color.TRANSPARENT);
+		typedArray.recycle();
+		
+		setDividerHeight(dividerHeight);
+		
+		mScroller = new Scroller(context, new DecelerateInterpolator());
+		// XListView need the scroll event, and it will dispatch the event to
+		// user's listener (as a proxy).
+		super.setOnScrollListener(this);
+
+		// init header view
+		mHeaderView = new XListViewHeader(context);
+		mHeaderViewContent = (RelativeLayout) mHeaderView.findViewById(R.id.xlistview_header_content);
+		mHeaderTimeView = (TextView) mHeaderView.findViewById(R.id.xlistview_header_time);
+		addHeaderView(mHeaderView);
+
+		// init footer view
+		mFooterView = new XListViewFooter(context);
+		
+		mHeaderView.setHeaderBackground(headerBackground);
+		mFooterView.setFooterBackground(footerBackground);
+
+		// init header height
+		mHeaderView.getViewTreeObserver().addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
+			@Override
+			public void onGlobalLayout() {
+				mHeaderViewHeight = mHeaderViewContent.getHeight();
+				System.out.println("mHeaderViewHeight="+mHeaderViewHeight);
+				getViewTreeObserver().removeGlobalOnLayoutListener(this);
+			}
+		});
+	}
+
+	@Override
+	public void setAdapter(ListAdapter adapter) {
+		// make sure XListViewFooter is the last footer view, and only add once.
+		// 确保footer最后添加并且只添加一次
+		if (mIsFooterReady == false) {
+			mIsFooterReady = true;
+			addFooterView(mFooterView);
+		}
+		super.setAdapter(adapter);
+	}
+
+	/**
+	 * enable or disable pull down refresh feature.
+	 * 
+	 * @param enable
+	 */
+	public void setPullRefreshEnable(boolean enable) {
+		mEnablePullRefresh = enable;
+		if (!mEnablePullRefresh) { // disable, hide the content
+			mHeaderViewContent.setVisibility(View.INVISIBLE);
+		} else {
+			mHeaderViewContent.setVisibility(View.VISIBLE);
+		}
+	}
+
+	/**
+	 * enable or disable pull up load more feature.
+	 * 
+	 * @param enable
+	 */
+	public void setPullLoadEnable(boolean enable) {
+		mEnablePullLoad = enable;
+		if (!mEnablePullLoad) {
+			mFooterView.hide();
+			mFooterView.setOnClickListener(null);
+		} else {
+			mPullLoading = false;
+			mFooterView.show();
+			mFooterView.setState(XListViewFooter.STATE_NORMAL);
+			// both "pull up" and "click" will invoke load more.
+			mFooterView.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					startLoadMore();
+				}
+			});
+		}
+	}
+
+	/**
+	 * stop refresh, reset header view.
+	 */
+	public void stopRefresh() {
+		if (mPullRefreshing == true) {
+			mPullRefreshing = false;
+			resetHeaderHeight();
+		}
+	}
+
+	/**
+	 * stop load more, reset footer view.
+	 */
+	public void stopLoadMore() {
+		if (mPullLoading == true) {
+			mPullLoading = false;
+			mFooterView.setState(XListViewFooter.STATE_NORMAL);
+		}
+	}
+
+	/**
+	 * set last refresh time
+	 * 
+	 * @param time
+	 */
+	public void setRefreshTime(String time) {
+		mHeaderTimeView.setText(time);
+	}
+
+	private void invokeOnScrolling() {
+		if (mScrollListener instanceof OnXScrollListener) {
+			OnXScrollListener l = (OnXScrollListener) mScrollListener;
+			l.onXScrolling(this);
+		}
+	}
+
+	private void updateHeaderHeight(float delta) {
+		mHeaderView.setVisiableHeight((int) delta + mHeaderView.getVisiableHeight());
+		if (mEnablePullRefresh && !mPullRefreshing) { // 未处于刷新状态，更新箭头
+			if (mHeaderView.getVisiableHeight() > mHeaderViewHeight) {
+				mHeaderView.setState(XListViewHeader.STATE_READY);
+			} else {
+				mHeaderView.setState(XListViewHeader.STATE_NORMAL);
+			}
+		}
+		setSelection(0); // scroll to top each time
+	}
+
+	/**
+	 * reset header view's height.
+	 */
+	private void resetHeaderHeight() {
+		int height = mHeaderView.getVisiableHeight();// 当前的可见高度
+		if (height == 0) // not visible.
+			return;
+		// refreshing and header isn't shown fully. do nothing.
+		// 如果正在刷新并且高度没有完全展示
+		if (mPullRefreshing && height <= mHeaderViewHeight) {
+			return;
+		}
+		// 默认会回滚到header的位置
+		int finalHeight = 0; // default: scroll back to dismiss header.
+		// is refreshing, just scroll back to show all the header.
+		// 如果是正在刷新状态，则回滚到header的高度
+		if (mPullRefreshing && height > mHeaderViewHeight) {
+			finalHeight = mHeaderViewHeight;
+		}
+		mScrollBack = SCROLLBACK_HEADER;
+		// 回滚到指定位置
+		mScroller.startScroll(0, height, 0, finalHeight - height, SCROLL_DURATION);
+		// trigger computeScroll
+		// 触发computeScroll
+		invalidate();
+	}
+
+	private void updateFooterHeight(float delta) {
+		int height = mFooterView.getBottomMargin() + (int) delta;
+		if (mEnablePullLoad && !mPullLoading) {
+			if (height > PULL_LOAD_MORE_DELTA) { // height enough to invoke load
+													// more.
+				mFooterView.setState(XListViewFooter.STATE_READY);
+			} else {
+				mFooterView.setState(XListViewFooter.STATE_NORMAL);
+			}
+		}
+		mFooterView.setBottomMargin(height);
+
+		// setSelection(mTotalItemCount - 1); // scroll to bottom
+	}
+
+	private void resetFooterHeight() {
+		int bottomMargin = mFooterView.getBottomMargin();
+		if (bottomMargin > 0) {
+			mScrollBack = SCROLLBACK_FOOTER;
+			mScroller.startScroll(0, bottomMargin, 0, -bottomMargin, SCROLL_DURATION);
+			invalidate();
+		}
+	}
+
+	private void startLoadMore() {
+		mPullLoading = true;
+		mFooterView.setState(XListViewFooter.STATE_LOADING);
+		if (mListViewListener != null) {
+			mListViewListener.onLoadMore();
+		}
+	}
+
+	@Override
+	public boolean onTouchEvent(MotionEvent ev) {
+		if (mLastY == -1) {
+			mLastY = ev.getRawY();
+		}
+
+		switch (ev.getAction()) {
+		case MotionEvent.ACTION_DOWN:
+			mLastY = ev.getRawY();// 记录按下的坐标
+			break;
+		case MotionEvent.ACTION_MOVE:
+			final float deltaY = ev.getRawY() - mLastY;// 计算移动距离,如果>0，那么就是向下滑动，反之向上。
+			mLastY = ev.getRawY();// 在屏幕上的绝对位置
+			// 是第一项并且标题已经显示或者是在下拉
+			// 如果第一项可见并且header的可见高度>0或者是向下滑动，就说明用户在向下拉动或者是向上拉动header，也就是指示箭头显示的时候的状态，
+			// 这时候调用了updateHeaderHeight，来更新header的高度，实现header可以跟随手指动作上下移动
+			if (getFirstVisiblePosition() == 0 && (mHeaderView.getVisiableHeight() > 0 || deltaY > 0)) {
+				// the first item is showing, header has shown or pull down.
+				updateHeaderHeight(deltaY / OFFSET_RADIO); // 你手指在Y方向上移动400px，如果比例是2，那么屏幕上的控件移动就是400px/2=200px
+				invokeOnScrolling();
+			} else if (getLastVisiblePosition() == mTotalItemCount - 1 && (mFooterView.getBottomMargin() > 0 || deltaY < 0)) {
+				// last item, already pulled up or want to pull up.
+				updateFooterHeight(-deltaY / OFFSET_RADIO);
+			}
+			break;
+		default:
+			mLastY = -1; // reset
+			if (getFirstVisiblePosition() == 0) {
+				// invoke refresh
+				if (mEnablePullRefresh && mHeaderView.getVisiableHeight() > mHeaderViewHeight) {
+					mPullRefreshing = true;
+					mHeaderView.setState(XListViewHeader.STATE_REFRESHING);
+					if (mListViewListener != null) {
+						mListViewListener.onRefresh();
+					}
+				}
+				resetHeaderHeight();
+			} else if (getLastVisiblePosition() == mTotalItemCount - 1) {
+				// invoke load more.
+				if (mEnablePullLoad && mFooterView.getBottomMargin() > PULL_LOAD_MORE_DELTA && !mPullLoading) {
+					startLoadMore();
+				}
+				resetFooterHeight();
+			}
+			break;
+		}
+		return super.onTouchEvent(ev);
+	}
+
+	@Override
+	public void computeScroll() {
+		// 松手之后调用
+		if (mScroller.computeScrollOffset()) {
+			if (mScrollBack == SCROLLBACK_HEADER) {
+				mHeaderView.setVisiableHeight(mScroller.getCurrY());
+			} else {
+				mFooterView.setBottomMargin(mScroller.getCurrY());
+			}
+			postInvalidate();
+			invokeOnScrolling();
+		}
+		super.computeScroll();
+	}
+
+	@Override
+	public void setOnScrollListener(OnScrollListener l) {
+		mScrollListener = l;
+	}
+
+	@Override
+	public void onScrollStateChanged(AbsListView view, int scrollState) {
+		if (mScrollListener != null) {
+			mScrollListener.onScrollStateChanged(view, scrollState);
+		}
+	}
+
+	@Override
+	public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+		// send to user's listener
+		mTotalItemCount = totalItemCount;
+		if (mScrollListener != null) {
+			mScrollListener.onScroll(view, firstVisibleItem, visibleItemCount, totalItemCount);
+		}
+	}
+
+	public void setXListViewListener(IXListViewListener l) {
+		mListViewListener = l;
+	}
+
+	/**
+	 * you can listen ListView.OnScrollListener or this one. it will invoke
+	 * onXScrolling when header/footer scroll back.
+	 */
+	public interface OnXScrollListener extends OnScrollListener {
+		public void onXScrolling(View view);
+	}
+
+	/**
+	 * implements this interface to get refresh/load more event.
+	 */
+	public interface IXListViewListener {
+		public void onRefresh();
+
+		public void onLoadMore();
+	}
+}

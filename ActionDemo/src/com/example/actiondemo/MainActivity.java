@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.provider.Settings;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -69,9 +70,13 @@ public class MainActivity extends Activity implements OnClickListener {
 		Intent intent = null;
 		switch (v.getId()) {
 		case R.id.action_call:// 呼叫指定的电话号码
-			toastUtils.showToast(MainActivity.this, "调用ACTION_CALL，需要添加权限<uses-permission android:name=\"android.permission.CALL_PHONE\" />", Toast.LENGTH_LONG);
-			intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:123456"));
-			break;
+			Intent intentFromCapture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+			startActivityForResult(intentFromCapture, 2);
+			return;
+			
+//			toastUtils.showToast(MainActivity.this, "调用ACTION_CALL，需要添加权限<uses-permission android:name=\"android.permission.CALL_PHONE\" />", Toast.LENGTH_LONG);
+//			intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:123456"));
+//			break;
 		case R.id.action_dial:// 调用拨号面板
 			toastUtils.showToast(MainActivity.this, "调用ACTION_DIAL，需要添加权限<uses-permission android:name=\"android.permission.CALL_PHONE\" />", Toast.LENGTH_LONG);
 			intent = new Intent();

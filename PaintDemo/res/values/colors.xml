@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="shudu_color">
+        <item>#ffe6f0ff</item>
+        <item>#ffffffff</item>
+        <item>#64c6d4ef</item>
+        <item>#6456648f</item>
+    </string-array>
+
+</resources>

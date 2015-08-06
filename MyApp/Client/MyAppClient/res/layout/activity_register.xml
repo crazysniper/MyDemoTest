@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="用户名"
+            android:textColor="#b3b3b3"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/nickname"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="请输入昵称"
+            android:textColor="#7c7b7b"
+            android:textColorHint="#a99f9f"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="密码"
+            android:textColor="#b3b3b3"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/psd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="请输入密码"
+            android:inputType="textPassword"
+            android:textColor="#7c7b7b"
+            android:textColorHint="#a99f9f"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <AutoCompleteTextView
+        android:id="@+id/auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="自动填充" />
+
+    <Button
+        android:id="@+id/register_get"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="get方式注册" />
+
+    <Button
+        android:id="@+id/register_post"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="post方式注册" />
+
+</LinearLayout>

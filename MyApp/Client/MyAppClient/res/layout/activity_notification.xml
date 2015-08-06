@@ -1,0 +1,60 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/normalBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="正常样式通知" />
+
+    <Button
+        android:id="@+id/inboxBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="收件箱样式通知" />
+
+    <Button
+        android:id="@+id/bigtextBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="大文本样式通知" />
+
+    <Button
+        android:id="@+id/bigpictureBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="大图片样式通知" />
+
+    <Button
+        android:id="@+id/progressBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="显示进度通知" />
+
+    <Button
+        android:id="@+id/customBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="自定义样式通知" />
+
+    <Button
+        android:id="@+id/dismissBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="清除所有通知" />
+
+    <Button
+        android:id="@+id/forwardRegularBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="导航到NotiRegularActivity通知" />
+
+    <Button
+        android:id="@+id/forwardSpecialBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="导航到NotiSpecialActivity通知" />
+
+</LinearLayout>

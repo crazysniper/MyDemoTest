@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res/com.gftest.myappclient"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f3eded"
+    android:orientation="vertical" >
+
+    <com.gftest.myappclient.xlistview.XListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cacheColorHint="#00000000"
+        android:fadingEdge="none"
+        android:listSelector="#00000000"
+        custom:dividerHeight="0dp"
+        custom:footerBackground="#00000000"
+        custom:headerBackground="#00000000" />
+
+</LinearLayout>

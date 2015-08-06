@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/register1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="静态注册" />
+
+    <Button
+        android:id="@+id/register2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="动态注册" />
+
+    <Button
+        android:id="@+id/receiver1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="普通广播" />
+
+    <Button
+        android:id="@+id/receiver2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="有序广播" />
+
+    <Button
+        android:id="@+id/receiver3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="abortBroadcast()终止有序广播" />
+
+    <Button
+        android:id="@+id/receiver4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="异步广播" />
+
+</LinearLayout>

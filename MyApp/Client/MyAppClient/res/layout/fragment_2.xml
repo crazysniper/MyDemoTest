@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:orientation="vertical" >
+
+        <include layout="@layout/base_header" />
+
+        <Button
+            android:id="@+id/text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="动画文字"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/btn1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="使用onSaveInstanceState" />
+
+        <Button
+            android:id="@+id/btn2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="各种Progress" />
+
+        <Button
+            android:id="@+id/btn3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="坐标" />
+
+        <Button
+            android:id="@+id/btn6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="关于屏幕的参数" />
+
+        <Button
+            android:id="@+id/screen_shot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="截屏" />
+
+        <Button
+            android:id="@+id/myfloat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="浮动小窗口" />
+
+        <Button
+            android:id="@+id/myanim"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="动画基础" />
+
+        <Button
+            android:id="@+id/btn4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="sharedpreferences" />
+
+        <Button
+            android:id="@+id/btn5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Activity的4种启动模式" />
+
+        <Button
+            android:id="@+id/actionBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ActionBar" />
+
+        <Button
+            android:id="@+id/timer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Timer定时器" />
+    </LinearLayout>
+
+</ScrollView>

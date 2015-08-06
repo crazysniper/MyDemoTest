@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="55dp"
+    android:background="#FFFFFF"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#CCCCCC" />
+
+    <FrameLayout
+        android:layout_width="45dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="4dp" >
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="top|center_horizontal"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/ic_launcher"
+            android:focusable="false" />
+
+        <TextView
+            android:id="@+id/fragment3_update"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_gravity="top|right"
+            android:layout_marginRight="3dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/red_icon"
+            android:visibility="gone" />
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="2dp"
+        android:text="消息"
+        android:textColor="@drawable/tab_text_selected"
+        android:textSize="12sp" />
+
+</LinearLayout>

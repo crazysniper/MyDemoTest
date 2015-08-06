@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/parentLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="长按可以拖动排序"
+            android:textColor="#92a4ab"
+            android:textSize="13sp" />
+
+        <RelativeLayout
+            android:id="@+id/finish"
+            android:layout_width="60dp"
+            android:layout_height="42dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/morequan_selector" >
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="18dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/morequan_up_icon" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <com.gftest.myappclient.wangyi.DragGridView
+        android:id="@+id/quanGridView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:cacheColorHint="#00000000"
+        android:gravity="center"
+        android:horizontalSpacing="10dip"
+        android:listSelector="#00000000"
+        android:numColumns="3"
+        android:verticalSpacing="10dip" />
+
+</LinearLayout>

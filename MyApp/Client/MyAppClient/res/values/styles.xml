@@ -1,0 +1,76 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="cart_dialog" parent="@android:style/Theme.Holo.Light.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <!-- 边框 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 背景透明 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 模糊 -->
+    </style>
+    <!-- 默认 -->
+    <style name="MyThemeDefault" parent="@android:style/Theme">
+        <item name="btnColor">#00ff00</item>
+        <item name="mainBackground">#ffffff</item>
+        <item name="mainTextColor">#000000</item>
+        <item name="textString">默认主题</item>
+    </style>
+
+    <!-- 夜间 -->
+    <style name="MyThemeNight" parent="@android:style/Theme">
+        <item name="btnColor">#0000ff</item>
+        <item name="mainBackground">#000000</item>
+        <item name="mainTextColor">#ffffff</item>
+        <item name="textString">夜间主题</item>
+    </style>
+
+    <style name="checbox_icon_style" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:paddingLeft">28dp</item>
+        <item name="android:button">@drawable/checkbox_icon_bg</item>
+    </style>
+
+    <style name="checbox_icon_style2" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:drawablePadding">10dp</item>
+        <item name="android:button">@drawable/checkbox_icon_bg</item>
+    </style>
+
+    <style name="anim_popup_dir">
+        <item name="android:windowEnterAnimation">@anim/slide_in</item>
+        <item name="android:windowExitAnimation">@anim/slide_out</item>
+    </style>
+
+    <style name="quan_pop_anim" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/quan_pop_in</item>
+        <item name="android:windowExitAnimation">@anim/quan_pop_out</item>
+    </style>
+
+    <style name="top_category_scroll_view_item_text">
+        <item name="android:textSize">16.0sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="fragment_wangyi_choose_pop" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/fragment_wangyi_choose_in</item>
+        <item name="android:windowExitAnimation">@anim/fragment_wangyi_choose_out</item>
+    </style>
+
+    <style name="new_ratingbar_style" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/new_ratingbar</item>
+        <item name="android:minHeight">35dp</item>
+        <item name="android:maxHeight">50dp</item>
+    </style>
+
+</resources>

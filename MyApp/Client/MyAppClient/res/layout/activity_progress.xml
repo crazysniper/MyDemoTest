@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android_custom="http://schemas.android.com/apk/res/com.gftest.myappclient"
+    xmlns:myprogress="http://schemas.android.com/apk/res/com.gftest.myappclient"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="开始" />
+
+        <com.gftest.myappclient.widget.MyProgress
+            android:id="@+id/myProgress"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="10dp"
+            myprogress:myMax="100"
+            myprogress:myRoudProgressColor="#6a995b"
+            myprogress:myRoudWidth="4dp"
+            myprogress:myRoundColor="#56ecec"
+            myprogress:myShowText="true"
+            myprogress:myStyle="STROKE"
+            myprogress:myTextColor="#f70f2a"
+            myprogress:myTextSize="20sp" />
+
+        <com.gftest.myappclient.widget.CircleProgressBar
+            android:id="@+id/progress1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp" />
+
+        <com.gftest.myappclient.widget.HorizontalProgressBarView
+            android:id="@+id/progress2"
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp" />
+
+        <com.gftest.myappclient.widget.RoundProgressBar
+            android:id="@+id/roundProgressBar1"
+            android:layout_width="80dip"
+            android:layout_height="80dip"
+            android:layout_marginTop="10dp" />
+
+        <com.gftest.myappclient.widget.RoundProgressBar
+            android:id="@+id/roundProgressBar2"
+            android:layout_width="80dip"
+            android:layout_height="80dip"
+            android:layout_marginTop="10dp"
+            android_custom:roundColor="#D1D1D1"
+            android_custom:roundProgressColor="@android:color/black"
+            android_custom:roundWidth="10dip"
+            android_custom:textColor="#9A32CD"
+            android_custom:textSize="18sp" />
+
+        <com.gftest.myappclient.widget.RoundProgressBar
+            android:id="@+id/roundProgressBar3"
+            android:layout_width="80dip"
+            android:layout_height="80dip"
+            android:layout_marginTop="10dp"
+            android_custom:roundColor="#C6E2FF"
+            android_custom:roundProgressColor="#CD3333"
+            android_custom:roundWidth="10dip"
+            android_custom:textIsDisplayable="false" />
+
+        <com.gftest.myappclient.widget.RoundProgressBar
+            android:id="@+id/roundProgressBar4"
+            android_custom:style="FILL"
+            android:layout_width="80dip"
+            android:layout_height="80dip"
+            android:layout_marginTop="10dp"
+            android_custom:roundProgressColor="#C2C2C2"
+            android_custom:roundWidth="1dip" />
+
+        <com.gftest.myappclient.widget.RoundProgressBar
+            android:id="@+id/roundProgressBar5"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:layout_marginTop="10dp" />
+    </LinearLayout>
+
+</ScrollView>

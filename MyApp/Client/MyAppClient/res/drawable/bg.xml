@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- 逆时针旋转270度，从上到下，蓝色变成黑色 -->
+    <gradient
+        android:angle="270"
+        android:endColor="#000000"
+        android:startColor="#4FD4DD"
+        android:type="linear" />
+
+</shape>

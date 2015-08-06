@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:circle_custom="http://schemas.android.com/apk/res/com.gftest.myappclient"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <com.gftest.myappclient.widget.DayProgress
+            android:id="@+id/circle1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            circle_custom:arc_bg="#fecd19"
+            circle_custom:circle_bg="#eee9e5"
+            circle_custom:startAngle="90"
+            circle_custom:sweepAngle="90"
+            circle_custom:textcolor="#ffffff"
+            circle_custom:textsize="13" />
+
+        <ProgressBar
+            android:id="@+id/progress1"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="-1.5dp"
+            android:layout_marginRight="-1.5dp"
+            android:layout_weight="1"
+            android:max="1000"
+            android:progress="0"
+            android:progressDrawable="@drawable/jifen_qiandao_bg" />
+
+        <com.gftest.myappclient.widget.DayProgress
+            android:id="@+id/circle2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            circle_custom:arc_bg="#fecd19"
+            circle_custom:circle_bg="#eee9e5"
+            circle_custom:startAngle="0"
+            circle_custom:sweepAngle="0"
+            circle_custom:textcolor="#a9a9a9"
+            circle_custom:textsize="13" />
+
+        <ProgressBar
+            android:id="@+id/progress2"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="-1.5dp"
+            android:layout_marginRight="-1.5dp"
+            android:layout_weight="1"
+            android:max="1000"
+            android:progress="0"
+            android:progressDrawable="@drawable/jifen_qiandao_bg" />
+
+        <com.gftest.myappclient.widget.DayProgress
+            android:id="@+id/circle3"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            circle_custom:arc_bg="#fecd19"
+            circle_custom:circle_bg="#eee9e5"
+            circle_custom:startAngle="0"
+            circle_custom:sweepAngle="0"
+            circle_custom:textcolor="#a9a9a9"
+            circle_custom:textsize="13" />
+
+        <ProgressBar
+            android:id="@+id/progress3"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="-1.5dp"
+            android:layout_marginRight="-1.5dp"
+            android:layout_weight="1"
+            android:max="1000"
+            android:progress="0"
+            android:progressDrawable="@drawable/jifen_qiandao_bg" />
+
+        <com.gftest.myappclient.widget.DayProgress
+            android:id="@+id/circle4"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            circle_custom:arc_bg="#fecd19"
+            circle_custom:circle_bg="#eee9e5"
+            circle_custom:startAngle="0"
+            circle_custom:sweepAngle="0"
+            circle_custom:textcolor="#a9a9a9"
+            circle_custom:textsize="13" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="2天"
+            android:textColor="#f0840c"
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="10天"
+            android:textColor="#b4afab"
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tv3"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="50天"
+            android:textColor="#b4afab"
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tv4"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="100天"
+            android:textColor="#b4afab"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+</LinearLayout>

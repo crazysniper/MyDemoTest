@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="10px"
+        android:background="#f3eded" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <FrameLayout
+            android:id="@+id/postHeadlayout"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="13dp" >
+
+            <ImageView
+                android:id="@+id/postHead"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:src="@drawable/ic_launcher" />
+
+            <TextView
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:background="@drawable/circle_head_bg" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/postHeadlayout"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/postHeadlayout"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="哈喽"
+                android:textColor="#6d6155"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/ageStr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="10个月"
+                android:textColor="#b9b9b9"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/showdated"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/postHeadlayout"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="22dp"
+            android:layout_marginTop="7dp"
+            android:text="5分钟前"
+            android:textColor="#b9b9b9"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="7dp"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="12dp"
+            android:text="标题"
+            android:textColor="#574d43"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:id="@+id/picLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+
+            <ImageView
+                android:id="@+id/pic1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/pic2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/pic3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/replyNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginBottom="8dp"
+            android:layout_marginRight="22dp"
+            android:layout_marginTop="6dp"
+            android:drawableLeft="@drawable/bbs_message"
+            android:drawablePadding="3dp"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="#8e8e8e"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+</LinearLayout>
